@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gridfig — a figure, beautifully arranged</title>
+  <link rel="stylesheet" href="style.css"><script src="model.js" defer></script><script src="app.js" defer></script>
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand"><span class="brand-icon" aria-hidden="true">▦</span> gridfig <span class="badge">LOCAL STUDIO</span></div>
+    <div class="header-actions"><button id="open" title="Restore a project previously saved by this app">Open project</button><button id="save" title="Download an editable project with the grid, tray, settings and original images. No JSON editing needed.">Save project</button><button id="export" class="primary">Export PDF <span>↗</span></button></div>
+  </header>
+  <main>
+    <aside>
+      <div class="eyebrow">THE COMPOSITION</div>
+      <h1>Good results.<br>Clear presentation.</h1>
+      <p class="intro">Arrange your images. Let Typst take care of the paper-ready figure.</p>
+      <section>
+        <div class="section-title"><h2>01 <span>Grid</span></h2><button id="reset" class="text-button" title="Empty the grid and image tray; keep the layout and labels">Clear all images</button></div>
+        <label>Layout preset<select id="preset" aria-label="Layout preset"><option value="custom">Custom</option><option value="tight">Tight · zero margins & gaps</option><option value="paper">Paper · balanced spacing</option><option value="airy">Airy · generous spacing</option></select></label>
+        <div class="fields two"><label>Length units<select id="length-unit" aria-label="Length units"><option>mm</option><option>cm</option><option>in</option><option>pt</option><option>px</option></select></label><label>Type & line units<select id="type-unit" aria-label="Type & line units"><option>pt</option><option>px</option><option>mm</option><option>cm</option><option>in</option></select></label></div>
+        <div class="fields two"><label>Rows<input id="rows" type="number" min="1" max="20" value="2"></label><label>Columns<input id="cols" type="number" min="1" max="20" value="3"></label></div>
+        <div class="fields two"><label>Cell width <span>mm</span><input id="cell_width_mm" type="number" min="1" max="250" step="1"></label><label>Cell height <span>mm</span><input id="cell_height_mm" type="number" min="1" max="250" step="1"></label></div>
+        <div class="fields two"><label>Image gap <span>mm</span><input id="gap_mm" type="number" min="0" max="30" step="0.5"></label><label>Page margin <span>mm</span><input id="margin_mm" type="number" min="0" max="30" step="0.5"></label></div>
+        <label>Image fitting<select id="fit"><option value="contain">Contain · show the whole image</option><option value="cover">Cover · crop to fill</option><option value="stretch">Stretch · distort to fill</option></select></label>
+      </section>
+      <section>
+        <h2>02 <span>Headers</span></h2>
+        <div class="sides"><label><input type="checkbox" id="side-top">Top</label><label><input type="checkbox" id="side-left">Left</label><label><input type="checkbox" id="side-bottom">Bottom</label><label><input type="checkbox" id="side-right">Right</label></div>
+        <p class="hint">Edit labels around the grid. Start with <code>=</code> for Typst markup: <code>=$x_t$</code> or <code>=*Ours*</code>.</p>
+        <div class="fields two"><label>Header gap <span>mm</span><input id="header_gap_mm" type="number" min="0" max="30" step="0.5"></label><label>Side width <span>mm</span><input id="side_width_mm" type="number" min="1" max="100" step="1"></label></div>
+        <div class="fields two"><label>Top height <span>mm</span><input id="top_height_mm" type="number" min="1" max="100" step="0.5" placeholder="Auto"></label><label>Bottom height <span>mm</span><input id="bottom_height_mm" type="number" min="1" max="100" step="0.5" placeholder="Auto"></label></div>
+        <details><summary>Header rotation</summary><div class="fields two" id="rotations"></div></details>
+      </section>
+      <section>
+        <h2>03 <span>Typography & lines</span></h2>
+        <label>Font family<input id="font" type="text" list="fonts"><datalist id="fonts"><option value="Libertinus Serif"><option value="New Computer Modern"><option value="Linux Libertine O"><option value="Inter"><option value="Arial"></datalist></label>
+        <div class="fields two"><label>Font size <span>pt</span><input id="font_size_pt" type="number" min="1" max="72" step="0.5"></label><label>Cell border <span>pt</span><input id="stroke_pt" type="number" min="0" max="5" step="0.1"></label></div>
+      </section>
+      <section>
+        <h2>04 <span>Image encoding</span></h2>
+        <label>PDF raster encoding<select id="compression" aria-label="PDF raster encoding"><option value="lossless">Lossless · preserve decoded pixels</option><option value="preserve">Original encoding · no re-encoding</option><option value="jpeg">JPEG · smaller, lossy</option></select></label>
+        <label id="quality-field" hidden>JPEG quality <span>1–100</span><input id="jpeg_quality" type="number" min="1" max="100" step="1" value="90"></label>
+        <p class="hint" id="encoding-note">No resizing. SVG stays vector. WebP input is decoded for PDF.</p>
+        <p class="hint">Lossless WebP imports are supported. PDF has no native WebP encoding; use Lossless to preserve pixels.</p>
+      </section>
+      <section>
+        <h2>05 <span>Import a folder</span></h2>
+        <label>Folder layout<select id="folder-mode" aria-label="Folder layout"><option value="methods">Method folders · columns × samples</option><option value="flat">Flat list · fill empty cells</option></select></label>
+        <button id="folder">Choose folder</button>
+        <p class="hint">Method folders: <code>method/sample.png</code>. Shared sample names form rows; missing images leave empty cells. Flat lists use natural filename order.</p>
+      </section>
+      <div class="local-note"><span class="status-dot"></span> Your images stay on this computer.<br><span class="muted">Save a project before closing this tab.</span></div>
+    </aside>
+    <div class="workspace">
+      <div class="workspace-heading"><div><div class="eyebrow">FIGURE WORKSPACE</div><h2>A little structure. A sharper story.</h2></div><button id="demo">Load example</button></div>
+      <div class="toolbar"><div class="tabs" role="tablist" aria-label="Workspace view"><button id="edit-tab" class="active" role="tab" aria-selected="true">Arrange</button><button id="preview-tab" role="tab" aria-selected="false">PDF preview</button></div><div class="toolbar-actions"><label class="zoom-label">Zoom<select id="zoom" aria-label="Zoom"><option value="fit">Fit</option><option value="0.5">50%</option><option value="0.75">75%</option><option value="1" selected>100%</option><option value="1.5">150%</option><option value="2">200%</option></select></label><button id="paste" class="small">Paste image</button><button id="add" class="small">+ Add images</button><button id="render" class="small">Update preview</button></div></div>
+      <div class="layout-summary"><span id="dimensions"></span><span id="arrangement-note">Live dimensions · rich labels show Typst source</span></div>
+      <div class="canvas">
+        <div id="edit-pane"><div class="paper" id="paper"><div id="grid" role="grid" aria-label="Image grid"></div></div><p class="canvas-caption">Click to browse · drop files · drag to swap · focus a cell and paste</p></div>
+        <div id="preview-pane" hidden><p id="preview-state" role="status" hidden></p><div class="paper preview-paper"><img id="preview" alt="Compiled Typst figure preview"><div id="preview-empty">Select PDF preview to render your figure.</div></div><p class="canvas-caption">Rendered by Typst · updates automatically after edits · workspace background is outside the PDF page</p></div>
+      </div>
+      <div class="statusbar"><span id="status" role="status" aria-live="polite">Loading example…</span><button id="bundle" class="text-button">Download Typst project ↗</button></div>
+      <div id="error" role="alert" hidden></div>
+      <section class="tray-panel" aria-label="Unused image tray">
+        <div class="tray-heading"><h2>Image tray <span id="tray-count">0 unused</span></h2><div><button id="grid-to-tray" class="small">Move grid to tray</button><button id="add-tray" class="small">+ Add to tray</button></div></div>
+        <p class="hint">Outside the exported figure. Drag into a cell to place or swap; drop grid images here to set them aside. Click a tray image to fill an empty cell.</p>
+        <div id="tray-list" class="tray-list" aria-label="Tray images"></div>
+      </section>
+    <div class="footnote"><span>MADE FOR THE METHODS SECTION.</span><span>Save project creates the editable file for you.</span></div>
+    </div>
+  </main>
+  <input id="files" type="file" accept=".png,.jpg,.jpeg,.svg,.webp,.gif" multiple hidden>
+  <input id="project-file" type="file" accept=".json" hidden>
+  <input id="folder-files" type="file" accept=".png,.jpg,.jpeg,.svg,.webp,.gif" webkitdirectory multiple hidden>
+</body>
+</html>

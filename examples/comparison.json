@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "images": [
+    ["images/coast-input.png", "images/coast-baseline.png", "images/coast-ours.png"],
+    ["images/dunes-input.png", "images/dunes-baseline.png", "images/dunes-ours.png"]
+  ],
+  "headers": {
+    "top": ["Input", "Baseline", {"typst": "*Ours*"}],
+    "left": ["Coast", "Dunes"],
+    "bottom": [{"typst": "$x_t$"}, {"typst": "$hat(x)_0$"}, {"typst": "$lambda = 0.7$"}]
+  },
+  "layout": {
+    "cell_width_mm": 36,
+    "cell_height_mm": 36,
+    "gap_mm": 1.5,
+    "header_gap_mm": 2,
+    "side_width_mm": 14,
+    "font_size_pt": 10,
+    "font": "Libertinus Serif",
+    "fit": "contain",
+    "stroke_pt": 0,
+    "margin_mm": 2,
+    "rotations": {"left": 0}
+  }
+}

@@ -1,0 +1,39 @@
+# Python caches, environments and package builds
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+/build/
+/dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+
+# Generated figures, temporary files and local editor saves
+/.gridfig/
+/tmp/
+/output/
+/figure.pdf
+/figure.zip
+*.gridfig.json
+
+# Local tool state and environment files
+/.codex/
+/.agents/
+/.aws/
+.env
+.env.*
+!.env.example
+
+# OS and editor leftovers
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~

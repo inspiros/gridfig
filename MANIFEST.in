@@ -1,0 +1,6 @@
+include lib.typ figure.typ QUICKSTART.md
+recursive-include web *.html *.js *.css
+recursive-include examples *.json *.typ *.png
+recursive-include tests *.py *.js
+recursive-include tools *.py
+recursive-include docs *.md *.png *.jpg *.webp *.svg

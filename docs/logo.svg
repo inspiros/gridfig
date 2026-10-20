@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <title>Gridfig</title>
+  <g fill="none" stroke="#bb572f" stroke-width="1.8">
+    <rect x="3" y="3" width="22" height="22"/>
+    <path d="M7.4 3v22M11.8 3v22M16.2 3v22M20.6 3v22M3 7.4h22M3 11.8h22M3 16.2h22M3 20.6h22"/>
+  </g>
+</svg>
