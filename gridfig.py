@@ -339,9 +339,9 @@ class Handler(BaseHTTPRequestHandler):
         route = self.route()
         if route is None:
             return
-        if route in ("", "app.js", "model.js", "style.css"):
+        if route in ("", "app.js", "model.js", "style.css", "logo.svg"):
             name = route or "index.html"
-            mime = {"index.html": "text/html; charset=utf-8", "app.js": "text/javascript; charset=utf-8", "model.js": "text/javascript; charset=utf-8", "style.css": "text/css; charset=utf-8"}[name]
+            mime = {"index.html": "text/html; charset=utf-8", "app.js": "text/javascript; charset=utf-8", "model.js": "text/javascript; charset=utf-8", "style.css": "text/css; charset=utf-8", "logo.svg": "image/svg+xml"}[name]
             self.reply((ROOT / "web" / name).read_bytes(), mime)
         elif route == "api/demo":
             config, assets = read_project(getattr(self.server, "project_path", ROOT / "examples" / "comparison.json"))

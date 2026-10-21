@@ -1,4 +1,4 @@
-# <img src="docs/logo.svg" width="28" height="28" alt=""> Gridfig ![GitHub License](https://img.shields.io/github/license/inspiros/gridfig)
+# <img src="web/logo.svg" width="28" height="28" alt=""> Gridfig ![GitHub License](https://img.shields.io/github/license/inspiros/gridfig)
 
 Simple tool to turn image grids into paper-ready PDF figures.
 - For very lazy people _(I don't use it)_.
